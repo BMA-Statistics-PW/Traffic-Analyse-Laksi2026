@@ -6,7 +6,7 @@ export function IntersectionSchematic({ className }: { className?: string }) {
       <figcaption className="mb-3 flex flex-wrap items-end justify-between gap-2">
         <div>
           <p className="text-sm font-semibold">แผนผังทิศทาง — แยกหลักสี่</p>
-          <p className="text-xs text-muted">ไฮไลต์คือทิศทางตามบันทึกข้อความ เขตหลักสี่</p>
+          <p className="text-xs text-muted">ไฮไลต์คือทิศทางเป้าหมายของโครงการ</p>
         </div>
         <p className="text-[11px] text-muted">ขับรถชิดซ้าย · ซ้ายผ่านตลอด = เลี้ยวใกล้</p>
       </figcaption>
@@ -98,7 +98,7 @@ export function IntersectionSchematic({ className }: { className?: string }) {
         </p>
         <p>
           <span className="mr-1 inline-block h-1 w-4 rounded-sm bg-primary align-middle" />
-          ทิศทางที่ขอคำนวณในบันทึกข้อความ
+          ทิศทางเป้าหมาย — แจ้งวัฒนะขาเข้าเลี้ยวซ้าย
         </p>
       </div>
     </figure>

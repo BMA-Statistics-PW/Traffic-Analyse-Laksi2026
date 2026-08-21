@@ -48,11 +48,11 @@ function Report() {
   return (
     <Shell>
       <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-        สำหรับตอบบันทึก {survey.memo.no} · {survey.memo.to}
+        ข้อเสนอทางวิศวกรรม · แยกหลักสี่ ตู้ 500
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">ข้อเสนอทางวิศวกรรม</h1>
       <p className="mt-2 max-w-2xl text-muted">
-        สรุปคำตอบสามข้อที่เขตหลักสี่ถาม: ปริมาณเท่าไรในช่วงเร่งด่วน ใช้เส้นทางนี้กี่คัน
+        สรุปสามประเด็นหลัก: ปริมาณเท่าไรในช่วงเร่งด่วน ใช้เส้นทางนี้กี่คัน
         และผายปากแล้วจะช่วยติดขัดได้มากน้อยเพียงใด
       </p>
 
@@ -230,21 +230,10 @@ function Report() {
           <li>คิวเป็นคิวขารวม ไม่แยกคิวเลี้ยวซ้าย จึงประเมิน spillback ของช่องซ้ายโดยอ้อม</li>
           <li>บางชั่วโมงคิวมีตัวอย่าง 1 จุด (EB 08–09 น. = 200 ม.) ใช้ด้วยความระวัง</li>
           <li>
-            รายงานฉบับก่อนวิเคราะห์คนละทิศ (NB เลี้ยวซ้าย) และมี PCU ผิดปกติ 18,211 — ไม่นำมาใช้ตอบบันทึกนี้
+            รายงานฉบับก่อนวิเคราะห์คนละทิศ (NB เลี้ยวซ้าย) และมี PCU ผิดปกติ 18,211 — ไม่นำมาใช้ในรายงานนี้
           </li>
         </ul>
       </section>
-
-      <figure className="mt-6 rounded-[18px] bg-surface p-3 shadow-card sm:p-4">
-        <img
-          src="/docs/memo.jpg"
-          alt="บันทึกข้อความเขตหลักสี่ ขอความอนุเคราะห์คำนวณปริมาณรถยนต์"
-          className="h-auto w-full rounded-[12px] outline outline-1 -outline-offset-1 outline-black/10"
-        />
-        <figcaption className="mt-3 px-1 text-xs text-muted">
-          ต้นเรื่อง: {survey.memo.from} เรียน {survey.memo.to} ลงวันที่ {survey.memo.date}
-        </figcaption>
-      </figure>
     </Shell>
   );
 }

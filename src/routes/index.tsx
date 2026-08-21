@@ -24,7 +24,7 @@ function Home() {
   return (
     <Shell>
       <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-        สำนักการจราจรและขนส่ง · ตอบบันทึก {survey.memo.no}
+        สำนักการจราจรและขนส่ง · แยกหลักสี่ ตู้ 500
       </p>
       <h1 className="mt-2 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
         ผายปากเลี้ยวซ้ายแยกหลักสี่
@@ -33,7 +33,7 @@ function Home() {
         </span>
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-        ปริมาณรถเลี้ยวซ้ายทิศทางที่เขตหลักสี่ขอคำนวณ คือ{" "}
+        ปริมาณรถเลี้ยวซ้ายทิศเป้าหมาย คือ{" "}
         <strong className="text-fg">{n(survey.eb5_12h)} คัน ใน 12 ชั่วโมง</strong>{" "}
         สำรวจวันพุธที่ {survey.site.date} สัญญาณไฟ {survey.site.signalId} คิวขาเข้าแจ้งวัฒนะยาวถึง{" "}
         {ebQ.max} เมตร — เพียงพอและสมควรทำช่องซ้ายผ่านตลอด
@@ -73,7 +73,7 @@ function Home() {
         <p>
           รายงานวิเคราะห์ฉบับก่อนใช้ทิศ <strong>NB เลี้ยวซ้าย</strong> (กำแพงเพชร 6 → แจ้งวัฒนะ)
           และมีค่า PCU ช่วง 09:00–10:00 สูงผิดปกติ 18,211 ซึ่งไม่ตรงกับข้อมูลดิบ
-          รายงานนี้ใช้ทิศทางตามบันทึกข้อความ: <strong>แจ้งวัฒนะขาเข้า เลี้ยวซ้ายเข้ากำแพงเพชร 6</strong>{" "}
+          รายงานนี้ใช้ทิศทาง: <strong>แจ้งวัฒนะขาเข้า เลี้ยวซ้ายเข้ากำแพงเพชร 6</strong>{" "}
           (EB5) ค่าจริงช่วงเดียวกันคือ {n(survey.hourly[2].eb5.v)} คัน/ชม.
         </p>
       </div>
@@ -84,35 +84,11 @@ function Home() {
         </div>
         <aside className="space-y-4 lg:col-span-2">
           <section className="rounded-[18px] bg-surface p-5 shadow-card">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted">บันทึกต้นเรื่อง</p>
-            <h2 className="mt-1 text-lg font-semibold">เขตหลักสี่ขอคำนวณปริมาณรถ</h2>
-            <dl className="mt-3 space-y-2 text-sm">
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted">เลขที่</dt>
-                <dd className="font-medium">{survey.memo.no}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted">ลงวันที่</dt>
-                <dd>{survey.memo.date}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted">จาก</dt>
-                <dd className="text-right">ผอ.เขตหลักสี่</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted">ถึง</dt>
-                <dd className="text-right">ผอ.สจส.</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted">รับเรื่อง สจส.</dt>
-                <dd>
-                  {survey.memo.recvSjs} · {survey.memo.recvDate}
-                </dd>
-              </div>
-            </dl>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted">โครงการ</p>
+            <h2 className="mt-1 text-lg font-semibold">ผายปากเลี้ยวซ้ายแยกหลักสี่</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              แผนงาน: ผายปากแจ้งวัฒนะขาเข้า เพิ่มช่องเลี้ยวซ้ายผ่านตลอดเข้ากำแพงเพชร 6
-              ร่วมกับสำนักการโยธา กรมทางหลวง และ รฟม. (สายสีชมพู)
+              ปาดมุมทางเท้าแจ้งวัฒนะขาเข้า เพิ่มรัศมีวงเลี้ยวและแยกช่องซ้ายผ่านตลอดเข้ากำแพงเพชร 6 ทิศเหนือ
+              เคารพเขต Protection Zone A สายสีชมพู ระยะร่น 3.00 ม. พื้นที่ขยายเขตทางประมาณ 153 ตร.ม.
             </p>
             <DownloadReport label="ดาวน์โหลดรายงาน Word (.docx)" className="mt-4 w-full" />
             <Link
@@ -181,7 +157,7 @@ function Home() {
           className="rounded-[18px] bg-primary p-5 text-primary-fg"
         >
           <p className="flex items-center gap-2 text-sm font-semibold">
-            <FileText className="size-4" /> ข้อเสนอตอบบันทึก
+            <FileText className="size-4" /> ข้อเสนอทางวิศวกรรม
           </p>
           <p className="mt-1 text-sm opacity-80">ความจุ ผลประโยชน์ ข้อจำกัด</p>
         </Link>

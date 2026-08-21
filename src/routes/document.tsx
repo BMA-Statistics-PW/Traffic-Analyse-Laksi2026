@@ -109,7 +109,6 @@ function TeReport() {
           </h1>
           <p className="mt-2 max-w-2xl text-muted">
             ฉบับสมบูรณ์ตามรูปแบบวิศวกรรมจราจร — ปริมาณ คิว ความจุ ผายปาก และแบบสัญญาณไฟวงกลม
-            เพื่อตอบบันทึก {survey.memo.no}
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -137,12 +136,6 @@ function TeReport() {
           </p>
           <dl className="mt-6 grid gap-2 text-sm sm:grid-cols-2">
             <div>
-              <dt className="text-muted">บันทึกต้นเรื่อง</dt>
-              <dd className="font-medium">
-                {survey.memo.no} ลงวันที่ {survey.memo.date}
-              </dd>
-            </div>
-            <div>
               <dt className="text-muted">วันสำรวจ</dt>
               <dd className="font-medium">
                 {survey.site.date} ({survey.site.dow}) อากาศ{survey.site.weather}
@@ -157,6 +150,10 @@ function TeReport() {
             <div>
               <dt className="text-muted">วิธีหลัก</dt>
               <dd className="font-medium">HCM 7 · Webster · Harders · UK TSM Ch.6</dd>
+            </div>
+            <div>
+              <dt className="text-muted">ผู้จัดทำ</dt>
+              <dd className="font-medium">PRAPAWADEE WACHIRAPUT · © Prapawadee_W.</dd>
             </div>
           </dl>
           <p className="mt-6 text-xs text-muted">
@@ -182,13 +179,12 @@ function TeReport() {
           <h3 className="text-xl font-semibold">บทที่ 1 บทนำ</h3>
           <h4 className="font-semibold">1.1 หลักการและเหตุผล</h4>
           <p>
-            เขตหลักสี่มีหนังสือถึงผู้อำนวยการสำนักการจราจรและขนส่ง ขอคำนวณปริมาณรถบริเวณแยกหลักสี่
-            ถนนแจ้งวัฒนะตัดถนนกำแพงเพชร 6 เพื่อประกอบโครงการ<strong>ปาดผายมุมทางเลี้ยวซ้าย</strong>
-            ให้มีรัศมีวงเลี้ยวเพิ่มขึ้น แก้ไขรถติดที่แจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้ากำแพงเพชร 6 ทิศเหนือ
+            โครงการปาดผายมุมทางเลี้ยวซ้ายแยกหลักสี่ ถนนแจ้งวัฒนะตัดถนนกำแพงเพชร 6
+            เพื่อเพิ่มรัศมีวงเลี้ยว แก้ไขรถติดที่แจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้ากำแพงเพชร 6 ทิศเหนือ
           </p>
           <p>
-            รายงานวิเคราะห์ฉบับก่อนใช้ทิศ NB เลี้ยวซ้าย (กำแพงเพชร 6 → แจ้งวัฒนะ) ซึ่งไม่ตรงบันทึก
-            และมีค่า PCU ผิดปกติ รายงานนี้ใช้ทิศตามบันทึก: <strong>EB5</strong> และข้อมูลดิบจากไฟล์สำรวจ
+            รายงานวิเคราะห์ฉบับก่อนใช้ทิศ NB เลี้ยวซ้าย (กำแพงเพชร 6 → แจ้งวัฒนะ)
+            และมีค่า PCU ผิดปกติ รายงานนี้ใช้ทิศเป้าหมาย: <strong>EB5</strong> และข้อมูลดิบจากไฟล์สำรวจ
             หลักสี่(500) 69_05_20
           </p>
           <h4 className="font-semibold">1.2 วัตถุประสงค์</h4>
@@ -203,7 +199,7 @@ function TeReport() {
           <p>
             ศึกษาสี่แยกสัญญาณไฟตู้ 500 เท่านั้น ประสานกับตู้ 360 (แยกหลักสี่–วิภาวดี ห่าง ~80 ม.)
             ในระดับ OFFSET ไม่ทำโครงข่ายทั้งสายแจ้งวัฒนะ ไม่จำลองจุลภาค (VISSIM/Aimsun)
-            และไม่ประเมินอุบัติเหตุย้อนหลังเพราะไม่มีแฟ้มอุบัติเหตุประกอบบันทึก
+            และไม่ประเมินอุบัติเหตุย้อนหลังเพราะไม่มีแฟ้มอุบัติเหตุประกอบการศึกษา
           </p>
         </section>
 
@@ -797,7 +793,7 @@ function TeReport() {
           <p>
             เสนอทางเลือก 3: ผายปากตามแบบเขตหลักสี่ + ซ้ายผ่านตลอด EB5 + แก้หัวสัญญาณและจังหวะไฟ
           </p>
-          <h4 className="font-semibold">10.1 คำตอบสามข้อในบันทึก</h4>
+          <h4 className="font-semibold">10.1 สรุปผลหลัก</h4>
           <ol className="list-decimal space-y-2 pl-5">
             <li>
               ปริมาณเร่งด่วน — เช้า {n(am)} คัน/2 ชม. เย็น {n(pm)} คัน/2 ชม. พีคจริงเที่ยง {n(demand)} คัน/ชม.
@@ -856,17 +852,15 @@ function TeReport() {
             <li>Webster, F.V. Traffic Signal Settings. Road Research Technical Paper No. 39.</li>
             <li>Harders, J. Die Leistungsfähigkeit nicht signalgeregelter städtischer Verkehrsknoten.</li>
             <li>สำนักการจราจรและขนส่ง. ไฟล์สำรวจ หลักสี่(500) 69_05_20, 20 พฤษภาคม 2569.</li>
-            <li>เขตหลักสี่. บันทึกข้อความ {survey.memo.no} ลงวันที่ {survey.memo.date}.</li>
             <li>บริษัท ศรีทองเจริญ จำกัด. แผ่นติดตั้งเครื่องควบคุมสัญญาณไฟจราจร ตู้ 500.</li>
-            <li>เขตหลักสี่. รูปแบบบริเวณที่จะทำการผายปาก แยกหลักสี่ (แบบขอใช้พื้นที่).</li>
+            <li>รูปแบบบริเวณที่จะทำการผายปาก แยกหลักสี่ (แบบขอใช้พื้นที่).</li>
           </ol>
         </section>
 
         <footer className="border-t border-border pt-4 text-xs text-muted">
           <p>
             {SITE.alias} · พิกัด {SITE.lat.toFixed(6)}, {SITE.lng.toFixed(6)} · สำรวจ {SITE.surveyDate} ·
-            จัดทำเป็น Intersection Operational Analysis ตามโครง ITE/HCM เพื่อประกอบการตอบบันทึก{" "}
-            {survey.memo.no}
+            Intersection Operational Analysis ตามโครง ITE/HCM · © Prapawadee_W.
           </p>
         </footer>
       </article>

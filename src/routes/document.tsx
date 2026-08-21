@@ -40,14 +40,14 @@ export const Route = createFileRoute("/document")({ component: TeReport });
 const TOC = [
   "บทนำ",
   "พื้นที่ศึกษาและสภาพปัจจุบัน",
-  "วิธีการศึกษาและมาตรฐาน",
-  "ผลการสำรวจปริมาณจราจร",
-  "แถวคอยและระดับบริการปัจจุบัน",
+  "วิธีการศึกษาและมาตรฐานตามหลักวิศวกรรมจราจร",
+  "ผลการสำรวจและวิเคราะห์ข้อมูล",
+  "แถวคอยและระดับการให้บริการปัจจุบัน",
   "วินิจฉัยปัญหา",
   "ทางเลือกการปรับปรุง",
-  "วิเคราะห์ทางเลือกผายปาก",
-  "แบบสัญญาณไฟวงกลมและตารางขัดแย้ง",
-  "ข้อเสนอและแผนดำเนินงาน",
+  "การวิเคราะห์ผลจากการผายปากและปรับรัศมีวงเลี้ยว",
+  "รูปแบบสัญญาณไฟจราจร",
+  "ข้อเสนอแนะและข้อพิจารณาเพิ่มเติม",
   "ข้อจำกัดและความไม่แน่นอน",
   "เอกสารอ้างอิง",
 ];
@@ -102,13 +102,14 @@ function TeReport() {
       <div className="no-print mb-6 flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-            Intersection Operational Analysis · HCM / ITE
+            ตามรูปแบบวิศวกรรมจราจร · HCM / ITE
           </p>
           <h1 className="mt-2 max-w-3xl text-3xl font-semibold tracking-tight">
-            รายงานวิเคราะห์สภาพการจราจรทางแยก
+            รายงานการวิเคราะห์ปริมาณการจราจรทางแยกหลักสี่
           </h1>
           <p className="mt-2 max-w-2xl text-muted">
-            ฉบับสมบูรณ์ตามรูปแบบวิศวกรรมจราจร — ปริมาณ คิว ความจุ ผายปาก และแบบสัญญาณไฟวงกลม
+            แยกไอทีสแควร์ — ปริมาณจราจร แถวคอย ความจุ และแบบสัญญาณไฟจราจร
+            เพื่อวิเคราะห์การแก้ไขปัญหาจราจรในทางเลี้ยวซ้ายจากถนนแจ้งวัฒนะ เข้าถนนกำแพงเพชร 6 ทางทิศเหนือ
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -122,17 +123,20 @@ function TeReport() {
 
       <article className="doc-paper space-y-10 rounded-[18px] bg-surface p-5 shadow-card sm:p-8">
         <header className="doc-cover border-b border-border pb-8">
-          <p className="text-xs tracking-[0.16em] text-muted">TECHNICAL REPORT · WORKING PAPER</p>
+          <p className="text-xs tracking-[0.16em] text-muted">รายงานทางเทคนิค</p>
           <p className="mt-6 text-sm font-medium text-accent">สำนักการจราจรและขนส่ง กรุงเทพมหานคร</p>
           <h2 className="mt-2 text-3xl font-semibold leading-tight tracking-tight">
-            รายงานวิเคราะห์สภาพการจราจรทางแยก
+            รายงานการวิเคราะห์ปริมาณการจราจรทางแยกหลักสี่
             <span className="mt-2 block text-xl font-normal text-muted">
-              Intersection Operational and Improvement Study
+              (แยกไอทีสแควร์)
             </span>
           </h2>
-          <p className="mt-4 text-lg font-medium">{SITE.name}</p>
-          <p className="text-sm text-muted">
-            สัญญาณไฟ {SITE.cabinet} · {SITE.code} · {SITE.roads.ew} × {SITE.roads.ns}
+          <p className="mt-4 text-base leading-relaxed text-muted">
+            ตามรูปแบบวิศวกรรมจราจร — ปริมาณจราจร แถวคอย ความจุ และแบบสัญญาณไฟจราจร
+            เพื่อวิเคราะห์การแก้ไขปัญหาจราจรในทางเลี้ยวซ้ายจากถนนแจ้งวัฒนะ เข้าถนนกำแพงเพชร 6 ทางทิศเหนือ
+          </p>
+          <p className="mt-4 text-sm text-muted">
+            สัญญาณไฟจราจรหมายเลข {SITE.cabinet} · {SITE.code} · {SITE.roads.ew} × {SITE.roads.ns}
           </p>
           <dl className="mt-6 grid gap-2 text-sm sm:grid-cols-2">
             <div>
@@ -148,17 +152,17 @@ function TeReport() {
               </dd>
             </div>
             <div>
-              <dt className="text-muted">วิธีหลัก</dt>
+              <dt className="text-muted">วิธีการศึกษา</dt>
               <dd className="font-medium">HCM 7 · Webster · Harders · UK TSM Ch.6</dd>
             </div>
             <div>
-              <dt className="text-muted">ผู้จัดทำ</dt>
-              <dd className="font-medium">PRAPAWADEE WACHIRAPUT · © Prapawadee_W.</dd>
+              <dt className="text-muted">ผู้วิเคราะห์ข้อมูลและจัดทำรายงาน</dt>
+              <dd className="font-medium">นางสาวประภาวดี วชิรพุทธิ์</dd>
             </div>
           </dl>
           <p className="mt-6 text-xs text-muted">
-            เอกสารนี้เป็นรายงานวิเคราะห์ทางเทคนิค ไม่ใช่คำสั่งติดตั้งจนกว่า สจส. รับรอง
-            ไม่ทดแทนแบบก่อสร้าง 1:500 และการวัดระยะเคลียร์จริงที่สนาม
+            เอกสารนี้เป็นรายงานวิเคราะห์ทางเทคนิค ไม่ใช่คำสั่งติดตั้งจนกว่าสำนักการจราจรและขนส่งจะรับรอง
+            และไม่ทดแทนแบบก่อสร้างมาตราส่วน 1:500 รวมทั้งการวัดระยะเคลียร์จริง ณ สนาม
           </p>
         </header>
 
@@ -179,43 +183,46 @@ function TeReport() {
           <h3 className="text-xl font-semibold">บทที่ 1 บทนำ</h3>
           <h4 className="font-semibold">1.1 หลักการและเหตุผล</h4>
           <p>
-            โครงการปาดผายมุมทางเลี้ยวซ้ายแยกหลักสี่ ถนนแจ้งวัฒนะตัดถนนกำแพงเพชร 6
-            เพื่อเพิ่มรัศมีวงเลี้ยว แก้ไขรถติดที่แจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้ากำแพงเพชร 6 ทิศเหนือ
+            สำนักงานเขตหลักสี่ได้มีหนังสือถึงผู้อำนวยการสำนักการจราจรและขนส่ง
+            ขอคำนวณปริมาณจราจรบริเวณแยกหลักสี่ ถนนแจ้งวัฒนะตัดถนนกำแพงเพชร 6
+            เพื่อประกอบโครงการปาดผายมุมทางเลี้ยวซ้ายให้มีรัศมีวงเลี้ยวเพิ่มขึ้น
+            แก้ไขปัญหาจราจรติดขัดที่แจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้ากำแพงเพชร 6 ทิศเหนือ
           </p>
           <p>
-            รายงานวิเคราะห์ฉบับก่อนใช้ทิศ NB เลี้ยวซ้าย (กำแพงเพชร 6 → แจ้งวัฒนะ)
-            และมีค่า PCU ผิดปกติ รายงานนี้ใช้ทิศเป้าหมาย: <strong>EB5</strong> และข้อมูลดิบจากไฟล์สำรวจ
-            หลักสี่(500) 69_05_20
+            รายงานวิเคราะห์ฉบับก่อนใช้ทิศทาง NB เลี้ยวซ้าย (กำแพงเพชร 6 ไปแจ้งวัฒนะ)
+            และมีค่า PCU ผิดปกติ รายงานฉบับนี้จึงใช้ทิศทางเป้าหมาย <strong>EB5</strong>
+            และคำนวณจากข้อมูลดิบของไฟล์สำรวจ หลักสี่(500) 69_05_20
           </p>
-          <h4 className="font-semibold">1.2 วัตถุประสงค์</h4>
+          <h4 className="font-semibold">1.2 วัตถุประสงค์การวิเคราะห์ข้อมูล</h4>
           <ol className="list-decimal space-y-1 pl-5">
-            <li>หาปริมาณ องค์ประกอบรถ และแถวคอยของทิศทางเป้าหมายและทั้งแยก</li>
-            <li>ประเมินระดับบริการปัจจุบันของขาเลี้ยวซ้ายตาม HCM</li>
-            <li>วิเคราะห์ผลของผายปาก + ซ้ายผ่านตลอด เทียบสถานะสัญญาณไฟ</li>
-            <li>กำหนดแบบหัวสัญญาณไฟวงกลม/ลูกศรและตารางขัดแย้งตามทิศจริงในแผนที่</li>
-            <li>เสนอมาตรการที่ลงสนามได้ พร้อมข้อจำกัด Protection Zone สายสีชมพู</li>
+            <li>หาปริมาณจราจร องค์ประกอบรถ และแถวคอยของทิศทางเป้าหมายและทั้งแยก</li>
+            <li>ประเมินระดับการให้บริการปัจจุบันของทิศทางเลี้ยวซ้ายตาม HCM</li>
+            <li>วิเคราะห์ผลจากการผายปากและเลี้ยวซ้ายผ่านตลอด เทียบสถานะสัญญาณไฟจราจร</li>
+            <li>กำหนดแบบรอบสัญญาณไฟจราจรตามทิศทางการจราจรจริง</li>
+            <li>เสนอผลจากมาตรการ พร้อมข้อเสนอแนะ</li>
           </ol>
-          <h4 className="font-semibold">1.3 ขอบเขต</h4>
+          <h4 className="font-semibold">1.3 ข้อจำกัดและขอบเขตการวิเคราะห์ข้อมูล</h4>
           <p>
-            ศึกษาสี่แยกสัญญาณไฟตู้ 500 เท่านั้น ประสานกับตู้ 360 (แยกหลักสี่–วิภาวดี ห่าง ~80 ม.)
-            ในระดับ OFFSET ไม่ทำโครงข่ายทั้งสายแจ้งวัฒนะ ไม่จำลองจุลภาค (VISSIM/Aimsun)
-            และไม่ประเมินอุบัติเหตุย้อนหลังเพราะไม่มีแฟ้มอุบัติเหตุประกอบการศึกษา
+            เป็นการศึกษาเฉพาะสัญญาณไฟจราจรหมายเลขตู้ 500 ไม่ได้วิเคราะห์ประสานกับตู้สัญญาณไฟจราจรหมายเลข 360
+            (แยกหลักสี่–วิภาวดี ระยะห่างประมาณ 80 เมตร) ในระดับ OFFSET
+            ไม่มีการวิเคราะห์โครงข่ายทั้งสายถนนแจ้งวัฒนะ และไม่มีการประเมินอุบัติเหตุย้อนหลัง
           </p>
         </section>
 
         <section id="ch2" className="doc-break space-y-3">
           <h3 className="text-xl font-semibold">บทที่ 2 พื้นที่ศึกษาและสภาพปัจจุบัน</h3>
           <p>
-            ตู้ 500 คือแยกหลักสี่พลาซ่า / แยกไอทีสแควร์ ไม่ใช่แยกหลักสี่หลัก (ตู้ 360)
-            ไทยขับชิดซ้าย เลี้ยวใกล้ = ซ้าย เลี้ยวตัด = ขวา
+            สัญญาณไฟจราจรหมายเลขตู้ 500 คือแยกหลักสี่พลาซ่า / แยกไอทีสแควร์
+            ไม่ใช่แยกหลักสี่–วิภาวดี (ตู้ 360) การขับขี่ในประเทศไทยชิดซ้าย
+            ทิศทางเลี้ยวใกล้คือเลี้ยวซ้าย ทิศทางเลี้ยวตัดคือเลี้ยวขวา
           </p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] border-collapse text-sm">
               <thead>
                 <tr className="bg-surface-2 text-left">
-                  <th className="border border-border px-3 py-2">เข็มทิศ</th>
-                  <th className="border border-border px-3 py-2">ถนน / แลนด์มาร์ก</th>
-                  <th className="border border-border px-3 py-2">ขาเข้าแยก</th>
+                  <th className="border border-border px-3 py-2">ทิศ</th>
+                  <th className="border border-border px-3 py-2">ถนน / จุดสังเกต</th>
+                  <th className="border border-border px-3 py-2">ทิศทาง Turning Movement</th>
                 </tr>
               </thead>
               <tbody>
@@ -257,7 +264,7 @@ function TeReport() {
               className="h-auto w-full"
             />
             <figcaption className="border-t border-border px-3 py-2 text-xs text-muted">
-              ภาพที่ 2 รูปแบบบริเวณที่จะทำการผายปาก — พื้นที่ขยายเขตทางประมาณ 153.00 ตร.ม. ระยะร่นสายสีชมพู 3.00 ม.
+              ภาพที่ 1 รูปแบบบริเวณที่จะทำการผายปาก — พื้นที่ขยายเขตทางประมาณ 153.00 ตร.ม. ระยะร่นสายสีชมพู 3.00 ม.
             </figcaption>
           </figure>
           <IntersectionSchematic />
@@ -270,8 +277,11 @@ function TeReport() {
         </section>
 
         <section id="ch3" className="doc-break space-y-3">
-          <h3 className="text-xl font-semibold">บทที่ 3 วิธีการศึกษาและมาตรฐาน</h3>
-          <p>โครงรายงานยึด ITE Recommended Practice (Transportation Impact Analyses) ปรับเป็นการศึกษาทางแยกเดี่ยว และใช้วิธีคำนวณตาม HCM 7</p>
+          <h3 className="text-xl font-semibold">บทที่ 3 วิธีการศึกษาและมาตรฐานตามหลักวิศวกรรมจราจร</h3>
+          <p>
+            การวิเคราะห์ตามรายงานนี้ใช้หลัก ITE Recommended Practice (Transportation Impact Analyses)
+            ปรับเป็นการศึกษาทางแยกเดี่ยว และใช้วิธีคำนวณตาม HCM 7
+          </p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[520px] border-collapse text-sm">
               <thead>
@@ -339,20 +349,21 @@ function TeReport() {
         </section>
 
         <section id="ch4" className="doc-break space-y-3">
-          <h3 className="text-xl font-semibold">บทที่ 4 ผลการสำรวจปริมาณจราจร</h3>
-          <h4 className="font-semibold">4.1 สรุปทั้งแยกและทิศเป้าหมาย</h4>
+          <h3 className="text-xl font-semibold">บทที่ 4 ผลการสำรวจและวิเคราะห์ข้อมูล</h3>
+          <h4 className="font-semibold">4.1 สรุปปริมาณจราจรทั้งแยกและทิศเป้าหมาย</h4>
           <div className="grid gap-3 sm:grid-cols-3">
-            <Stat k="ทั้งแยก 12 ชม." v={`${n(survey.ix_12h)} คัน`} />
-            <Stat k="EB5 12 ชม." v={`${n(survey.eb5_12h)} คัน`} s={`${n(survey.eb5_12h_pcu, 0)} PCU · ${((survey.eb5_12h / survey.ix_12h) * 100).toFixed(1)}% ของแยก`} />
-            <Stat k="พีค EB5" v={`${n(peakHour.eb5.v)} คัน/ชม.`} s={`${hourLabel(peakHour.h)} · PHF ${peakHour.eb5.phf}`} />
+            <Stat k="ปริมาณจราจรทั้งแยก 12 ชม." v={`${n(survey.ix_12h)} คัน`} s="07.00–19.00 น." />
+            <Stat k="ทิศทาง EB5 12 ชม." v={`${n(survey.eb5_12h)} คัน`} s={`${n(survey.eb5_12h_pcu, 0)} PCU · ${((survey.eb5_12h / survey.ix_12h) * 100).toFixed(1)}% ของแยก`} />
+            <Stat k="Peak Hour EB5" v={`${n(peakHour.eb5.v)} คัน/ชม.`} s={`${hourLabel(peakHour.h)} น. · PHF ${peakHour.eb5.phf}`} />
           </div>
           <p>
-            เช้า 07:00–09:00 รวม {n(am)} คัน (เฉลี่ย {n(am / 2)} คัน/ชม.) เย็น 16:00–18:00 รวม {n(pm)} คัน
-            (เฉลี่ย {n(pm / 2)} คัน/ชม.) พีคของทิศนี้คือช่วงเที่ยง ไม่ใช่เช้า
-            ทั้งแยกพีค {hourLabel(ixPeak.h)} ที่ {n(ixPeak.tot)} คัน/ชม.
-            อัตราพีค 15 นาทีสูงสุด {n(peak15.EB5)} คัน ({hourLabel(peak15.t)}) เทียบเท่า {n(peak15.EB5 * 4)} คัน/ชม.
+            ช่วงเร่งด่วนเช้า 07:00–09:00 น. รวม {n(am)} คัน (เฉลี่ย {n(am / 2)} คัน/ชม.)
+            ช่วงเร่งด่วนเย็น 16:00–18:00 น. รวม {n(pm)} คัน (เฉลี่ย {n(pm / 2)} คัน/ชม.)
+            ช่วง Peak Hour ของทิศทางเป้าหมายนี้คือช่วงเที่ยง ไม่ใช่ช่วงเร่งด่วนเช้า
+            ช่วง Peak Hour ของทั้งแยกในช่วง {hourLabel(ixPeak.h)} น. ที่ {n(ixPeak.tot)} คัน/ชม.
+            อัตราพีค 15 นาทีสูงสุด {n(peak15.EB5)} คัน ({hourLabel(peak15.t)} น.) เทียบเท่า {n(peak15.EB5 * 4)} คัน/ชม.
           </p>
-          <h4 className="font-semibold">4.2 ปริมาณรายขาเข้า 12 ชั่วโมง</h4>
+          <h4 className="font-semibold">4.2 ปริมาณจราจรรายขาเข้า 12 ชั่วโมง</h4>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[480px] border-collapse text-sm">
               <thead>
@@ -398,11 +409,11 @@ function TeReport() {
               </tbody>
             </table>
           </div>
-          <h4 className="font-semibold">4.4 องค์ประกอบรถ EB5</h4>
+          <h4 className="font-semibold">4.4 สัดส่วนรถในทิศทาง EB5</h4>
           <p>
             รถยนต์ {n(mix.c)} ({((mix.c / mixTot) * 100).toFixed(1)}%) · ตู้/ปิคอัพ {n(mix.vn)} (
             {((mix.vn / mixTot) * 100).toFixed(1)}%) · เมล์ {n(mix.b)} · บรรทุก {n(mix.tk)} · สามล้อ {n(mix.tr)} —
-            เกือบทั้งหมดเป็นรถยนต์นั่ง รัศมีที่กว้างขึ้นยังจำเป็นสำหรับรถใหญ่ 14 คัน/วัน
+            เกือบทั้งหมดเป็นรถยนต์นั่ง ข้อเสนอแนะ: รัศมีวงเลี้ยวต้องกว้างเพียงพอสำหรับรถใหญ่ที่อาจมีปริมาณ 14 คันต่อวัน
           </p>
           <h4 className="font-semibold">4.5 ตารางชั่วโมง EB5</h4>
           <div className="overflow-x-auto">
@@ -438,7 +449,7 @@ function TeReport() {
         </section>
 
         <section id="ch5" className="doc-break space-y-3">
-          <h3 className="text-xl font-semibold">บทที่ 5 แถวคอยและระดับบริการปัจจุบัน</h3>
+          <h3 className="text-xl font-semibold">บทที่ 5 แถวคอยและระดับการให้บริการปัจจุบัน</h3>
           <h4 className="font-semibold">5.1 แถวคอยที่สำรวจ</h4>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[480px] border-collapse text-sm">
@@ -587,10 +598,15 @@ function TeReport() {
         </section>
 
         <section id="ch8" className="doc-break space-y-3">
-          <h3 className="text-xl font-semibold">บทที่ 8 วิเคราะห์ทางเลือกผายปาก</h3>
+          <h3 className="text-xl font-semibold">บทที่ 8 การวิเคราะห์ผลจากการผายปากและปรับรัศมีวงเลี้ยว</h3>
           <p>
-            หลังผายปาก แยกช่องซ้ายผ่านตลอดออกจากสัญญาณ ใช้ช่องว่างวิกฤตบนกำแพงเพชร 6 ทิศเหนือ
-            ปริมาณขัดแย้งใช้ขา NB ชั่วโมงพีคทั้งแยก ≈ {n(conflictNb)} คัน/ชม. (12:00–13:00)
+            การดำเนินงานโครงการคือการปาดมุมทางเท้ามุมตะวันตกเฉียงใต้ของแยก
+            ให้รถจากถนนแจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้าถนนกำแพงเพชร 6 ทิศเหนือได้ด้วยรัศมีที่กว้างขึ้น
+            และแยกช่องเลี้ยวซ้ายผ่านตลอดออกจากช่องทางตรง
+          </p>
+          <p>
+            หลังผายปาก แยกช่องซ้ายผ่านตลอดออกจากสัญญาณไฟจราจร ใช้ช่องว่างวิกฤตบนถนนกำแพงเพชร 6 ทิศเหนือ
+            ปริมาณจราจรขัดแย้งใช้ขา NB ชั่วโมงพีคทั้งแยกประมาณ {n(conflictNb)} คัน/ชม. (12:00–13:00 น.)
           </p>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[560px] border-collapse text-sm">
@@ -651,7 +667,7 @@ function TeReport() {
         </section>
 
         <section id="ch9" className="doc-break space-y-4">
-          <h3 className="text-xl font-semibold">บทที่ 9 แบบสัญญาณไฟวงกลมและตารางขัดแย้ง</h3>
+          <h3 className="text-xl font-semibold">บทที่ 9 รูปแบบสัญญาณไฟจราจร บริเวณทางแยกหลักสี่ (แยกไอทีสแควร์)</h3>
           <p>
             ผายปากอย่างเดียวไม่แก้ความปลอดภัยของหัวสัญญาณ บทนี้กำหนดไฟวงกลม (FG) และลูกศร (GA)
             ตามทิศจริง เหนือขึ้นบน
@@ -789,33 +805,64 @@ function TeReport() {
         </section>
 
         <section id="ch10" className="doc-break space-y-3">
-          <h3 className="text-xl font-semibold">บทที่ 10 ข้อเสนอและแผนดำเนินงาน</h3>
+          <h3 className="text-xl font-semibold">บทที่ 10 ข้อเสนอแนะและข้อพิจารณาเพิ่มเติมด้านวิศวกรรมจราจร</h3>
           <p>
-            เสนอทางเลือก 3: ผายปากตามแบบเขตหลักสี่ + ซ้ายผ่านตลอด EB5 + แก้หัวสัญญาณและจังหวะไฟ
+            จากการวิเคราะห์ปริมาณจราจร ความยาวแถวคอย และสัญญาณไฟจราจร พบว่าสมควรดำเนินการทางเลือกที่ 3
+            ได้แก่ การผายปากตามแบบที่เสนอ จัดช่องเลี้ยวซ้ายผ่านตลอดทิศทาง EB5 และปรับปรุงหัวสัญญาณไฟจราจรพร้อมจังหวะไฟ
           </p>
-          <h4 className="font-semibold">10.1 สรุปผลหลัก</h4>
+          <h4 className="font-semibold">10.1 สรุปผลการวิเคราะห์</h4>
           <ol className="list-decimal space-y-2 pl-5">
             <li>
-              ปริมาณเร่งด่วน — เช้า {n(am)} คัน/2 ชม. เย็น {n(pm)} คัน/2 ชม. พีคจริงเที่ยง {n(demand)} คัน/ชม.
+              ปริมาณจราจรช่วงเร่งด่วนเช้า 07:00–09:00 น. ในทิศทาง EB5 รวม {n(am)} คัน (เฉลี่ย {n(am / 2)} คัน/ชม.)
+              และช่วงเร่งด่วนเย็น 16:00–18:00 น. รวม {n(pm)} คัน (เฉลี่ย {n(pm / 2)} คัน/ชม.)
+              ช่วงพีคของทิศทางนี้อยู่ในช่วงเวลา 12:00–13:00 น. ที่ {n(demand)} คัน/ชม.
             </li>
             <li>
-              ใช้เส้นทางนี้ทั้งวัน — {n(survey.eb5_12h)} คัน ({n(survey.eb5_12h_pcu, 0)} PCU) คิดเป็น{" "}
-              {((survey.eb5_12h / survey.ix_12h) * 100).toFixed(1)}% ของแยก
+              ปริมาณจราจรที่ใช้ทิศทาง EB5 รวม 12 ชั่วโมง จำนวน {n(survey.eb5_12h)} คัน ({n(survey.eb5_12h_pcu, 0)} PCU)
+              คิดเป็น {((survey.eb5_12h / survey.ix_12h) * 100).toFixed(1)}% ของรถทั้งแยก
+              และประมาณ 19% ของรถขาเข้าบนถนนแจ้งวัฒนะ
             </li>
             <li>
-              ช่วยได้ — ความจุเหลือเฟือ (v/c {freeX.toFixed(2)} LOS {losUnsig(freeD)}) หน่วงลดจาก {n(dGeom, 0)} เหลือ{" "}
-              {n(freeD, 0)} วินาที/คัน และดึง 15–20% ของขา EB ออกจากไฟ
+              การผายปากและปรับเลี้ยวซ้ายผ่านตลอดสามารถดึงรถเลี้ยวซ้ายออกจากสัญญาณไฟ 15–20% ของขา EB
+              ซึ่งเป็นขาที่ความยาวแถวคอยยาวที่สุด (สูงสุด 200 ม.) ความจุซ้ายผ่านตลอดแบบให้ทางประมาณ {n(freeCap, 0)} PCU/ชม.
+              ต่อความต้องการ {n(demand)} คัน/ชม. ค่า v/c ประมาณ {freeX.toFixed(2)} LOS {losUnsig(freeD)}
+              ลดการหน่วงจากประมาณ {n(dGeom, 0)} วินาที เหลือ {n(freeD, 0)} วินาทีต่อคัน
             </li>
           </ol>
-          <h4 className="font-semibold">10.2 ลำดับงาน</h4>
+          <h4 className="font-semibold">10.2 ข้อพิจารณาเพิ่มเติมด้านวิศวกรรมจราจร</h4>
+          <ol className="list-decimal space-y-2 pl-5">
+            <li>
+              ช่องเร่งความเร็ว (Acceleration Lane) บนถนนกำแพงเพชร 6 ทิศเหนือ ควรกำหนดความยาวอย่างน้อย 40–60 เมตร
+              หากเขตทางเพียงพอ เพื่อลดการแย่งช่องจราจรของรถเลี้ยวซ้ายผ่านตลอดกับรถทางตรงที่รอจังหวะสัญญาณไฟจราจร
+            </li>
+            <li>
+              ความยาวช่องทางเข้าและระยะปาด (Entry Lane and Taper) กำหนดในระยะ 26 เมตร สำหรับรองรับคิวรถรอให้ทางประมาณ 2–4 คัน
+            </li>
+            <li>
+              ติดตั้งป้ายและเครื่องหมายจราจรเพิ่มเติม ได้แก่ เครื่องหมายเลี้ยวซ้ายผ่านตลอด ป้ายเตือนให้ทาง (Yield Sign)
+              และเครื่องหมายห้ามจอดรถบริเวณทางแยก
+            </li>
+            <li>
+              ปรับเลื่อนตำแหน่งทางข้ามให้พ้นจากรัศมีทางโค้ง หรือออกแบบให้มีเกาะหลบภัย (Refuge Island)
+              เพื่อลดความเสี่ยงจากรถเลี้ยวซ้ายผ่านตลอด
+            </li>
+            <li>
+              ตรวจสอบรัศมีวงเลี้ยว (Swept Path) ของรถบรรทุกและรถโดยสารขนาดใหญ่จำนวน 14 คันต่อ 12 ชั่วโมง
+              จากแบบก่อสร้างมาตราส่วน 1:500 ก่อนดำเนินการก่อสร้างจริง
+            </li>
+            <li>
+              การผายปากทางอย่างเดียวไม่เพียงพอ ควรปรับรอบจังหวะสัญญาณไฟจราจรให้สอดคล้องกับสภาพการจราจรแต่ละช่วงเวลา
+            </li>
+          </ol>
+          <h4 className="font-semibold">10.3 ลำดับงาน</h4>
           <ol className="list-decimal space-y-1 pl-5">
-            <li>รฟม. ยืนยันเขต Protection Zone A ก่อนก่อสร้าง</li>
-            <li>สำนักการโยธาวัด swept path และช่องเร่ง NB</li>
-            <li>สจส. ลงโปรแกรมตู้ตามบทที่ 9 (หัว GA ที่ B/D, conflict matrix, intergreen, OFFSET)</li>
-            <li>เปิดซ้ายผ่านตลอดพร้อมป้ายให้ทาง หลังงานโยธาและหัวสัญญาณเสร็จ</li>
-            <li>สำรวจหลังเปิด 15 นาที × 1 วันทำการ เพื่อเทียบคิว EB กับ 200 ม. ฐาน</li>
+            <li>การรถไฟฟ้าขนส่งมวลชนแห่งประเทศไทยยืนยันเขต Protection Zone A ก่อนก่อสร้าง</li>
+            <li>สำนักการโยธาตรวจสอบรัศมีวงเลี้ยวและช่องเร่งความเร็วทิศเหนือ</li>
+            <li>สำนักการจราจรและขนส่งลงโปรแกรมตู้ตามบทที่ 9 (หัวลูกศรที่ B/D ตารางขัดแย้ง intergreen และ OFFSET)</li>
+            <li>เปิดช่องเลี้ยวซ้ายผ่านตลอดพร้อมป้ายให้ทาง หลังงานโยธาและหัวสัญญาณเสร็จ</li>
+            <li>สำรวจหลังเปิดใช้ 15 นาที × 1 วันทำการ เพื่อเทียบความยาวแถวคอยขา EB กับฐาน 200 เมตร</li>
           </ol>
-          <h4 className="font-semibold">10.3 รายการตรวจก่อนติดตั้งสัญญาณ</h4>
+          <h4 className="font-semibold">10.4 รายการตรวจก่อนติดตั้งสัญญาณไฟจราจร</h4>
           <ol className="space-y-2">
             {CHECKLIST.map((c, i) => (
               <li key={c} className="flex gap-3 text-sm">
@@ -857,10 +904,18 @@ function TeReport() {
           </ol>
         </section>
 
+        <section className="doc-break space-y-2 border-t border-border pt-6">
+          <p className="text-sm font-semibold">ผู้วิเคราะห์ข้อมูลและจัดทำรายงาน</p>
+          <p>นางสาวประภาวดี วชิรพุทธิ์</p>
+          <p className="text-sm text-muted">นักวิชาการสถิติชำนาญการ</p>
+          <p className="text-sm text-muted">กลุ่มงานสถิติและวิจัย กองนโยบายและแผนงาน</p>
+          <p className="text-sm text-muted">สำนักการจราจรและขนส่ง กรุงเทพมหานคร</p>
+        </section>
+
         <footer className="border-t border-border pt-4 text-xs text-muted">
           <p>
             {SITE.alias} · พิกัด {SITE.lat.toFixed(6)}, {SITE.lng.toFixed(6)} · สำรวจ {SITE.surveyDate} ·
-            Intersection Operational Analysis ตามโครง ITE/HCM · © Prapawadee_W.
+            รายงานการวิเคราะห์ปริมาณการจราจรตามหลัก ITE/HCM · © Prapawadee_W.
           </p>
         </footer>
       </article>

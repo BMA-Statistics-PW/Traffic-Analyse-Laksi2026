@@ -20,8 +20,8 @@ function Analysis() {
       </p>
       <h1 className="mt-2 text-3xl font-semibold tracking-tight">ปริมาณจราจรและแถวคอย</h1>
       <p className="mt-2 max-w-2xl text-muted">
-        จุดสำรวจ {survey.site.nameTh} พิกัด {survey.site.lat}, {survey.site.lng} นับทุก 15 นาที 07:00–19:00
-        แปลง PCU ตามหัวไฟล์สำรวจ (รถยนต์/ตู้ = 1, เมล์ใหญ่ = 2.1, เมล์เล็ก = 1.5, บรรทุก = 2.5, สามล้อ = 0.93)
+        จุดสำรวจ {survey.site.nameTh} พิกัด {survey.site.lat}, {survey.site.lng} นับทุก 15 นาที ระหว่างเวลา 07:00–19:00 น.
+        แปลงเป็นหน่วย PCU ตามหัวไฟล์สำรวจ (รถยนต์/รถตู้ = 1, รถเมล์ใหญ่ = 2.1, รถเมล์เล็ก = 1.5, รถบรรทุก = 2.5, รถสามล้อ = 0.93)
       </p>
 
       <section className="mt-8 rounded-[18px] bg-surface p-5 shadow-card sm:p-6">

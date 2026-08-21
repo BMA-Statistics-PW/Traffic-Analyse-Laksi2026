@@ -3,7 +3,7 @@ import { AuthProvider } from "@/lib/auth/provider";
 import { PreviewHostBridge } from "@/components/preview-host-bridge";
 import appCss from "../styles.css?url";
 
-const APP_NAME = "แยกหลักสี่ — ผายปากเลี้ยวซ้าย";
+const APP_NAME = "แยกหลักสี่ — รายงานการวิเคราะห์ปริมาณการจราจร";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,7 +15,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "วิเคราะห์ปริมาณจราจรและข้อเสนอผายปากเลี้ยวซ้าย แยกหลักสี่ ถนนแจ้งวัฒนะเข้าถนนกำแพงเพชร 6",
+          "รายงานการวิเคราะห์ปริมาณการจราจรทางแยกหลักสี่ (แยกไอทีสแควร์) ถนนแจ้งวัฒนะเข้าถนนกำแพงเพชร 6",
       },
     ],
     links: [

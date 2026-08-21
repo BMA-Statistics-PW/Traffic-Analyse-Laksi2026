@@ -5,10 +5,10 @@ import { DownloadReport } from "@/components/download-report";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { to: "/", label: "สรุปผู้บริหาร" },
-  { to: "/analysis", label: "ปริมาณและคิว" },
-  { to: "/geometry", label: "ผายปาก" },
-  { to: "/report", label: "ข้อเสนอ" },
+  { to: "/", label: "สรุปผลการวิเคราะห์" },
+  { to: "/analysis", label: "ปริมาณจราจรและแถวคอย" },
+  { to: "/geometry", label: "รูปแบบผายปาก" },
+  { to: "/report", label: "ข้อเสนอแนะ" },
   { to: "/document", label: "รายงานวิเคราะห์" },
 ] as const;
 
@@ -34,7 +34,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 แยกหลักสี่
               </span>
               <span className="block truncate text-[11px] leading-tight text-muted">
-                สัญญาณไฟ 500 · ผายปากเลี้ยวซ้าย
+                สัญญาณไฟจราจร 500 · ปาดผายมุมทางเลี้ยวซ้าย
               </span>
             </span>
           </Link>
@@ -107,7 +107,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             <p className="mt-2">
               จัดทำและเป็นลิขสิทธิ์ของ
               <br />
-              <span className="font-medium">PRAPAWADEE WACHIRAPUT</span>
+              <span className="font-medium">นางสาวประภาวดี วชิรพุทธิ์</span>
               <br />
               นักวิชาการสถิติชำนาญการ · กลุ่มงานสถิติและวิจัย
               <br />

@@ -37,10 +37,10 @@ export function DownloadBanner() {
       <div className="min-w-0">
         <p className="text-xs font-medium uppercase tracking-wider opacity-70">ไฟล์ Word · A4</p>
         <p className="mt-1 text-base font-semibold leading-snug">
-          รายงานวิเคราะห์สภาพการจราจรทางแยก — แยกหลักสี่ ตู้ 500
+          รายงานการวิเคราะห์ปริมาณการจราจรทางแยกหลักสี่ (แยกไอทีสแควร์)
         </p>
         <p className="mt-1 text-sm opacity-80">
-          จัดจากข้อมูลดิบ หลักสี่(500) 69_05_20.xlsx · 12 บท + ภาคผนวกตารางปริมาณ
+          ตามรูปแบบวิศวกรรมจราจร · จากข้อมูลดิบ หลักสี่(500) 69_05_20.xlsx
         </p>
       </div>
       <DownloadReport

@@ -24,19 +24,20 @@ function Home() {
   return (
     <Shell>
       <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
-        สำนักการจราจรและขนส่ง · แยกหลักสี่ ตู้ 500
+        สำนักการจราจรและขนส่ง · รายงานการวิเคราะห์ปริมาณการจราจร
       </p>
       <h1 className="mt-2 max-w-3xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-        ผายปากเลี้ยวซ้ายแยกหลักสี่
+        ทางแยกหลักสี่ (แยกไอทีสแควร์)
         <span className="mt-2 block text-xl font-normal text-muted sm:text-2xl">
-          แจ้งวัฒนะขาเข้า เข้ากำแพงเพชร 6 ทิศเหนือ
+          เลี้ยวซ้ายจากถนนแจ้งวัฒนะเข้าถนนกำแพงเพชร 6 ทิศเหนือ
         </span>
       </h1>
       <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">
-        ปริมาณรถเลี้ยวซ้ายทิศเป้าหมาย คือ{" "}
+        ปริมาณจราจรเลี้ยวซ้ายทิศทางเป้าหมาย คือ{" "}
         <strong className="text-fg">{n(survey.eb5_12h)} คัน ใน 12 ชั่วโมง</strong>{" "}
-        สำรวจวันพุธที่ {survey.site.date} สัญญาณไฟ {survey.site.signalId} คิวขาเข้าแจ้งวัฒนะยาวถึง{" "}
-        {ebQ.max} เมตร — เพียงพอและสมควรทำช่องซ้ายผ่านตลอด
+        สำรวจวันพุธที่ {survey.site.date} สัญญาณไฟจราจรหมายเลข {survey.site.signalId}{" "}
+        ความยาวแถวคอยขาเข้าถนนแจ้งวัฒนะสูงสุด {ebQ.max} เมตร
+        ซึ่งเพียงพอและสมควรดำเนินการจัดช่องเลี้ยวซ้ายผ่านตลอด
       </p>
 
       <div className="mt-6">
@@ -45,7 +46,7 @@ function Home() {
 
       <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Kpi
-          label="เลี้ยวซ้าย 12 ชม."
+          label="ปริมาณจราจรเลี้ยวซ้าย 12 ชม."
           value={n(survey.eb5_12h)}
           hint={`${n(survey.eb5_12h_pcu, 0)} PCU · ${ebShare.toFixed(1)}% ของทั้งแยก`}
           tone="target"
@@ -61,7 +62,7 @@ function Home() {
           hint={`${peak15.t.replaceAll(".", ":")} → ${n(peak15.EB5 * 4)} คัน/ชม.`}
         />
         <Kpi
-          label="คิวขาเข้า EB สูงสุด"
+          label="ความยาวแถวคอยขาเข้า EB สูงสุด"
           value={`${ebQ.max} ม.`}
           hint={ebQ.h}
           tone="bad"
@@ -71,9 +72,9 @@ function Home() {
       <div className="mt-6 flex items-start gap-3 rounded-[18px] bg-warn-bg px-4 py-3 text-sm text-warn">
         <TriangleAlert className="mt-0.5 size-4 shrink-0" />
         <p>
-          รายงานวิเคราะห์ฉบับก่อนใช้ทิศ <strong>NB เลี้ยวซ้าย</strong> (กำแพงเพชร 6 → แจ้งวัฒนะ)
-          และมีค่า PCU ช่วง 09:00–10:00 สูงผิดปกติ 18,211 ซึ่งไม่ตรงกับข้อมูลดิบ
-          รายงานนี้ใช้ทิศทาง: <strong>แจ้งวัฒนะขาเข้า เลี้ยวซ้ายเข้ากำแพงเพชร 6</strong>{" "}
+          รายงานวิเคราะห์ฉบับก่อนได้ใช้ทิศทาง <strong>NB เลี้ยวซ้าย</strong> (กำแพงเพชร 6 ไปแจ้งวัฒนะ)
+          และมีค่า PCU ช่วง 09:00–10:00 น. สูงผิดปกติ 18,211 ซึ่งไม่ตรงกับข้อมูลดิบ
+          รายงานฉบับนี้ใช้ทิศทางเป้าหมาย: <strong>แจ้งวัฒนะขาเข้า เลี้ยวซ้ายเข้ากำแพงเพชร 6</strong>{" "}
           (EB5) ค่าจริงช่วงเดียวกันคือ {n(survey.hourly[2].eb5.v)} คัน/ชม.
         </p>
       </div>
@@ -85,10 +86,12 @@ function Home() {
         <aside className="space-y-4 lg:col-span-2">
           <section className="rounded-[18px] bg-surface p-5 shadow-card">
             <p className="text-xs font-medium uppercase tracking-wider text-muted">โครงการ</p>
-            <h2 className="mt-1 text-lg font-semibold">ผายปากเลี้ยวซ้ายแยกหลักสี่</h2>
+            <h2 className="mt-1 text-lg font-semibold">ปาดผายมุมทางเลี้ยวซ้ายแยกหลักสี่</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              ปาดมุมทางเท้าแจ้งวัฒนะขาเข้า เพิ่มรัศมีวงเลี้ยวและแยกช่องซ้ายผ่านตลอดเข้ากำแพงเพชร 6 ทิศเหนือ
-              เคารพเขต Protection Zone A สายสีชมพู ระยะร่น 3.00 ม. พื้นที่ขยายเขตทางประมาณ 153 ตร.ม.
+              การดำเนินงานโครงการคือการปาดมุมทางเท้ามุมตะวันตกเฉียงใต้ของแยก
+              ให้รถจากถนนแจ้งวัฒนะขาเข้าเลี้ยวซ้ายเข้าถนนกำแพงเพชร 6 ทิศเหนือได้ด้วยรัศมีที่กว้างขึ้น
+              และแยกช่องเลี้ยวซ้ายผ่านตลอดออกจากช่องทางตรง โดยเคารพเขต Protection Zone A สายสีชมพู
+              ระยะร่น 3.00 เมตร พื้นที่ขยายเขตทางประมาณ 153 ตารางเมตร
             </p>
             <DownloadReport label="ดาวน์โหลดรายงาน Word (.docx)" className="mt-4 w-full" />
             <Link
@@ -105,7 +108,7 @@ function Home() {
             </Link>
           </section>
           <section className="rounded-[18px] bg-surface p-5 shadow-card">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted">บทสรุปวิศวกรรม</p>
+            <p className="text-xs font-medium uppercase tracking-wider text-muted">สรุปผลการวิเคราะห์</p>
             <ul className="mt-2 space-y-2 text-sm leading-relaxed">
               <li>เร่งด่วนเช้า 07–09 น. {n(am)} คัน · เย็น 16–18 น. {n(pm)} คัน — ใช้ทั้งวัน ไม่ใช่แค่พีคเช้า</li>
               <li>
@@ -142,14 +145,14 @@ function Home() {
           to="/analysis"
           className="rounded-[18px] bg-surface p-5 shadow-card transition-shadow hover:shadow-[0_0_0_1px_rgba(28,25,21,0.1)]"
         >
-          <p className="text-sm font-semibold">ปริมาณและแถวคอย</p>
-          <p className="mt-1 text-sm text-muted">ราย 15 นาที, PCU, คิวรายขา</p>
+          <p className="text-sm font-semibold">ปริมาณจราจรและแถวคอย</p>
+          <p className="mt-1 text-sm text-muted">ราย 15 นาที, PCU, ความยาวแถวคอยรายขา</p>
         </Link>
         <Link
           to="/geometry"
           className="rounded-[18px] bg-surface p-5 shadow-card transition-shadow hover:shadow-[0_0_0_1px_rgba(28,25,21,0.1)]"
         >
-          <p className="text-sm font-semibold">แบบผายปาก</p>
+          <p className="text-sm font-semibold">รูปแบบผายปาก</p>
           <p className="mt-1 text-sm text-muted">รัศมี เขตทางสายสีชมพู เกาะสามเหลี่ยม</p>
         </Link>
         <Link
@@ -157,7 +160,7 @@ function Home() {
           className="rounded-[18px] bg-primary p-5 text-primary-fg"
         >
           <p className="flex items-center gap-2 text-sm font-semibold">
-            <FileText className="size-4" /> ข้อเสนอทางวิศวกรรม
+            <FileText className="size-4" /> ข้อเสนอแนะทางวิศวกรรม
           </p>
           <p className="mt-1 text-sm opacity-80">ความจุ ผลประโยชน์ ข้อจำกัด</p>
         </Link>

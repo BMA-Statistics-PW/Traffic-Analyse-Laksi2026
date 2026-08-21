@@ -237,6 +237,9 @@ class Report:
         site = self.s["site"]
         memo = self.s["memo"]
         meta = [
+            ("ผู้จัดทำ / ลิขสิทธิ์", "PRAPAWADEE WACHIRAPUT  © Prapawadee_W."),
+            ("สังกัด", "นักวิชาการสถิติชำนาญการ  กลุ่มงานสถิติและวิจัย"),
+            ("กอง / สำนัก", "กองนโยบายและแผนงาน  สำนักการจราจรและขนส่ง กรุงเทพมหานคร"),
             ("วันสำรวจ", f"{site['date']} ({site['dow']})  อากาศ{site['weather']}"),
             ("พิกัด", f"{site['lat']}°N  {site['lng']}°E"),
             ("บันทึกต้นเรื่อง", f"{memo['no']}  ลงวันที่ {memo['date']}"),
@@ -253,6 +256,13 @@ class Report:
             italic=True,
             color=MUTED,
         )
+        self.p("ลิขสิทธิ์", size=14, bold=True, center=True, space_after=2)
+        self.p("© Prapawadee_W.", size=14, center=True, bold=True, space_after=4)
+        self.p("จัดทำและเป็นลิขสิทธิ์ของ", size=13, center=True, space_after=2)
+        self.p("PRAPAWADEE WACHIRAPUT", size=14, center=True, bold=True, space_after=2)
+        self.p("นักวิชาการสถิติชำนาญการ  ·  กลุ่มงานสถิติและวิจัย", size=13, center=True, space_after=0)
+        self.p("กองนโยบายและแผนงาน  ·  สำนักการจราจรและขนส่ง กรุงเทพมหานคร", size=13, center=True, space_after=6)
+        self.p("ไม่อนุญาตให้นำไปใช้เพื่อผลประโยชน์ส่วนบุคคล", size=14, center=True, bold=True, space_after=8)
         self.doc.add_page_break()
 
     def toc(self):

@@ -97,12 +97,24 @@ export function Shell({ children }: { children: React.ReactNode }) {
       </header>
       <main className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">{children}</main>
       <footer className="border-t border-border no-print">
-        <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-xs text-muted sm:px-6 sm:flex-row sm:justify-between">
-          <p>สำรวจ 20 พ.ค. 2569 · สัญญาณไฟ 500 · แยกหลักสี่พลาซ่า</p>
-          <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <p className="text-xs text-muted">สำรวจ 20 พ.ค. 2569 · สัญญาณไฟ 500 · แยกหลักสี่พลาซ่า</p>
             <DownloadReport label="ดาวน์โหลดรายงาน Word" variant="link" size="sm" />
-            <span>© Prapawadee_W. · สจส. · ไม่อนุญาตให้นำไปใช้เพื่อผลประโยชน์ส่วนบุคคล</span>
-          </p>
+          </div>
+          <aside className="mt-5 rounded-[12px] border border-border bg-surface-2 px-4 py-4 text-xs leading-relaxed text-fg">
+            <p className="font-semibold tracking-wide">ลิขสิทธิ์ © Prapawadee_W.</p>
+            <p className="mt-2">
+              จัดทำและเป็นลิขสิทธิ์ของ
+              <br />
+              <span className="font-medium">PRAPAWADEE WACHIRAPUT</span>
+              <br />
+              นักวิชาการสถิติชำนาญการ · กลุ่มงานสถิติและวิจัย
+              <br />
+              กองนโยบายและแผนงาน · สำนักการจราจรและขนส่ง กรุงเทพมหานคร
+            </p>
+            <p className="mt-2 font-medium">ไม่อนุญาตให้นำไปใช้เพื่อผลประโยชน์ส่วนบุคคล</p>
+          </aside>
         </div>
       </footer>
     </div>

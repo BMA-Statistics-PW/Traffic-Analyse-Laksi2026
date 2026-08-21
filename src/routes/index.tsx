@@ -162,7 +162,7 @@ function Home() {
           <p className="flex items-center gap-2 text-sm font-semibold">
             <FileText className="size-4" /> ข้อเสนอแนะทางวิศวกรรม
           </p>
-          <p className="mt-1 text-sm opacity-80">ความจุ ผลประโยชน์ ข้อจำกัด</p>
+          <p className="mt-1 text-sm opacity-80">ความจุ ผลประโยชน์ ข้อเสนอแนะ</p>
         </Link>
       </div>
     </Shell>

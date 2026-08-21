@@ -1,0 +1,250 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useMemo, useState } from "react";
+import { Shell } from "@/components/shell";
+import { Badge } from "@/components/ui/badge";
+import { survey } from "@/data/survey";
+import {
+  losFromVc,
+  losSignal,
+  losUnsig,
+  signalDelay,
+  twscDelay,
+  vcRatio,
+  yieldCapacity,
+  SAT_LEFT,
+} from "@/lib/traffic";
+import { n } from "@/lib/utils";
+
+export const Route = createFileRoute("/report")({ component: Report });
+
+function Report() {
+  const demand = 342;
+  const peak15rate = 376;
+  const [cycle, setCycle] = useState(150);
+  const [gOverC, setG] = useState(0.18);
+  const [conflict, setConflict] = useState(500);
+  const [tc, setTc] = useState(6.5);
+
+  const sigCap = SAT_LEFT * gOverC;
+  const sigX = vcRatio(demand, sigCap);
+  const sigD = signalDelay({ cycle, gOverC, volume: demand });
+  const freeCap = yieldCapacity(conflict, tc, 3.3);
+  const freeX = vcRatio(demand, freeCap);
+  const freeD = twscDelay(demand, freeCap, 0.25);
+  const savePerVeh = Math.max(0, sigD - freeD);
+  const savePeakHour = (savePerVeh * demand) / 3600;
+
+  const rows = useMemo(
+    () => [
+      { g: 0.12, c: 120 },
+      { g: 0.12, c: 150 },
+      { g: 0.18, c: 150 },
+      { g: 0.18, c: 180 },
+      { g: 0.25, c: 150 },
+    ],
+    [],
+  );
+
+  return (
+    <Shell>
+      <p className="text-xs font-medium uppercase tracking-[0.16em] text-muted">
+        สำหรับตอบบันทึก {survey.memo.no} · {survey.memo.to}
+      </p>
+      <h1 className="mt-2 text-3xl font-semibold tracking-tight">ข้อเสนอทางวิศวกรรม</h1>
+      <p className="mt-2 max-w-2xl text-muted">
+        สรุปคำตอบสามข้อที่เขตหลักสี่ถาม: ปริมาณเท่าไรในช่วงเร่งด่วน ใช้เส้นทางนี้กี่คัน
+        และผายปากแล้วจะช่วยติดขัดได้มากน้อยเพียงใด
+      </p>
+
+      <section className="mt-8 rounded-[18px] bg-primary p-5 text-primary-fg sm:p-7">
+        <p className="text-xs font-medium uppercase tracking-wider opacity-70">คำตอบสั้น</p>
+        <ol className="mt-3 space-y-3 text-sm leading-relaxed sm:text-base">
+          <li>
+            <strong>ปริมาณช่วงเร่งด่วน</strong> — เช้า 07:00–09:00 รวม {n(249 + 223)} คัน (เฉลี่ย {n((249 + 223) / 2)} คัน/ชม.)
+            เย็น 16:00–18:00 รวม {n(324 + 304)} คัน (เฉลี่ย {n((324 + 304) / 2)} คัน/ชม.) พีคจริงของทิศนี้คือ 12:00–13:00 ที่ {n(342)} คัน/ชม.
+          </li>
+          <li>
+            <strong>ใช้เส้นทางนี้ทั้งวัน</strong> — {n(survey.eb5_12h)} คัน ใน 12 ชั่วโมง ({n(survey.eb5_12h_pcu, 0)} PCU) คิดเป็น{" "}
+            {((survey.eb5_12h / survey.ix_12h) * 100).toFixed(1)}% ของรถทั้งแยก และราว 19% ของขาเข้าแจ้งวัฒนะ
+          </li>
+          <li>
+            <strong>ช่วยได้มากน้อย</strong> — ดึงรถเลี้ยวซ้ายออกจากสัญญาณไฟ 15–20% ของขา EB ซึ่งเป็นขาที่คิวยาวที่สุด (สูงสุด 200 ม.)
+            ความจุซ้ายผ่านตลอดแบบให้ทางประมาณ {n(Math.round(freeCap))} PCU/ชม. ต่อความต้องการ {n(demand)} — v/c ≈ {freeX.toFixed(2)} LOS{" "}
+            {losFromVc(freeX)} หน่วงต่อคันลดจากประมาณ {n(sigD, 0)} วินาที เหลือ {n(freeD, 0)} วินาที
+          </li>
+        </ol>
+      </section>
+
+      <section className="mt-8 rounded-[18px] bg-surface p-5 shadow-card sm:p-6">
+        <h2 className="text-lg font-semibold">ความจุปัจจุบัน (สมมติสัญญาณ) เทียบซ้ายผ่านตลอด</h2>
+        <p className="mt-1 text-sm text-muted">
+          ไฟล์สำรวจไม่มีเวลาเขียว (g) และรอบไฟ (C) — ใช้ความไหวต่อค่าทั่วไปของแยกใหญ่ กทม. ความอิ่มตัวเลี้ยวซ้าย {n(SAT_LEFT)} PCU/ชม./ช่อง
+          ความต้องการใช้ชั่วโมงพีค {n(demand)} คัน (12:00–13:00) และอัตราพีค 15 นาที {n(peak15rate)} คัน/ชม.
+        </p>
+
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
+          <label className="text-sm">
+            รอบไฟ C (วินาที) · {cycle}
+            <input
+              type="range"
+              min={90}
+              max={180}
+              step={10}
+              value={cycle}
+              onChange={(e) => setCycle(Number(e.target.value))}
+              className="mt-1 w-full"
+            />
+          </label>
+          <label className="text-sm">
+            สัดส่วนเขียวเลี้ยวซ้าย g/C · {gOverC.toFixed(2)}
+            <input
+              type="range"
+              min={0.1}
+              max={0.3}
+              step={0.01}
+              value={gOverC}
+              onChange={(e) => setG(Number(e.target.value))}
+              className="mt-1 w-full"
+            />
+          </label>
+          <label className="text-sm">
+            ปริมาณขัดแย้งบนกำแพงเพชร 6 NB (คัน/ชม.) · {conflict}
+            <input
+              type="range"
+              min={200}
+              max={1200}
+              step={50}
+              value={conflict}
+              onChange={(e) => setConflict(Number(e.target.value))}
+              className="mt-1 w-full"
+            />
+          </label>
+          <label className="text-sm">
+            ช่องว่างวิกฤต t<sub>c</sub> (วินาที) · {tc.toFixed(1)}
+            <input
+              type="range"
+              min={5}
+              max={8}
+              step={0.1}
+              value={tc}
+              onChange={(e) => setTc(Number(e.target.value))}
+              className="mt-1 w-full"
+            />
+          </label>
+        </div>
+
+        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-[12px] bg-bad-bg p-4">
+            <p className="text-xs font-medium uppercase tracking-wider text-bad">สถานะปัจจุบัน · สัญญาณไฟ</p>
+            <p className="mt-2 font-mono text-2xl tabular-nums">
+              {n(sigCap, 0)} PCU/ชม.
+            </p>
+            <p className="mt-1 text-sm">
+              v/c {sigX.toFixed(2)} · หน่วง {n(sigD, 0)} วินาที/คัน · LOS {losSignal(sigD)}
+            </p>
+          </div>
+          <div className="rounded-[12px] bg-ok-bg p-4">
+            <p className="text-xs font-medium uppercase tracking-wider text-ok">หลังผายปาก · ซ้ายผ่านตลอด (ให้ทาง)</p>
+            <p className="mt-2 font-mono text-2xl tabular-nums">
+              {n(freeCap, 0)} PCU/ชม.
+            </p>
+            <p className="mt-1 text-sm">
+              v/c {freeX.toFixed(2)} · หน่วง {n(freeD, 0)} วินาที/คัน · LOS {losUnsig(freeD)}
+            </p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm text-muted">
+          ประหยัดหน่วงทิศนี้ประมาณ {n(savePerVeh, 0)} วินาที/คัน หรือ {n(savePeakHour, 1)} คัน-ชั่วโมง ในชั่วโมงพีค
+          หากทำช่องเร่งความเร็วแบบไม่ต้องให้ทาง ความจุจะสูงกว่านี้ (1,200+ PCU/ชม.)
+        </p>
+
+        <table className="mt-5 w-full text-left text-sm">
+          <thead>
+            <tr className="border-b border-border text-xs uppercase tracking-wider text-muted">
+              <th className="py-2 font-medium">g/C</th>
+              <th className="py-2 font-medium">C</th>
+              <th className="py-2 text-right font-medium">ความจุ</th>
+              <th className="py-2 text-right font-medium">v/c @ 342</th>
+              <th className="py-2 text-right font-medium">หน่วง (วินาที)</th>
+              <th className="py-2 text-right font-medium">LOS</th>
+            </tr>
+          </thead>
+          <tbody className="tabular-nums">
+            {rows.map((r) => {
+              const cap = SAT_LEFT * r.g;
+              const x = vcRatio(demand, cap);
+              const d = signalDelay({ cycle: r.c, gOverC: r.g, volume: demand });
+              return (
+                <tr key={`${r.g}-${r.c}`} className="border-b border-border/70">
+                  <td className="py-2">{r.g.toFixed(2)}</td>
+                  <td className="py-2">{r.c}</td>
+                  <td className="py-2 text-right">{n(cap, 0)}</td>
+                  <td className="py-2 text-right">{x.toFixed(2)}</td>
+                  <td className="py-2 text-right">{n(d, 0)}</td>
+                  <td className="py-2 text-right">
+                    <Badge tone={losSignal(d) === "F" || losSignal(d) === "E" ? "bad" : "warn"}>
+                      {losSignal(d)}
+                    </Badge>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </section>
+
+      <section className="mt-6 rounded-[18px] bg-surface p-5 shadow-card sm:p-6">
+        <h2 className="text-lg font-semibold">ข้อเสนอแนะดำเนินการ</h2>
+        <ol className="mt-3 list-decimal space-y-3 pl-5 text-sm leading-relaxed">
+          <li>
+            <strong>ดำเนินการผายปากตามแบบที่เสนอ</strong> — ปริมาณ {n(survey.eb5_12h)} คัน/12 ชม. ไม่ใช่ทิศทางเล็ก
+            และคิวขาเข้าแจ้งวัฒนะเป็นปัญหาหลักของแยก
+          </li>
+          <li>
+            <strong>ทำช่องซ้ายผ่านตลอดพร้อมเกาะสามเหลี่ยม</strong> ตามแบบ ร่นเขตทางสายสีชมพู 3.00 ม. ห้ามล้ำ
+          </li>
+          <li>
+            <strong>เพิ่มช่องเร่งบนกำแพงเพชร 6 ทิศเหนือ 40–60 ม.</strong> หากเขตทางพอ — ลดความขัดแย้งตอนรวมช่อง
+          </li>
+          <li>
+            <strong>ปรับสัญญาณไฟหลังเปิดใช้</strong> ลดหรือยกเฟสเลี้ยวซ้าย EB แล้วคืนเวลาเขียวให้ทางตรงแจ้งวัฒนะ
+            ซึ่งจะช่วยคิว 114–200 ม. มากกว่าตัวเลขเลี้ยวซ้ายอย่างเดียว
+          </li>
+          <li>
+            <strong>จัดการคนเดินเท้าใหม่</strong> ที่มุมปาด — เกาะหลบภัยหรือย้ายทางข้ามพ้นปากโค้ง
+          </li>
+          <li>
+            <strong>ตรวจ swept path</strong> ของรถเมล์/บรรทุก (14 คัน/วันในทิศนี้) ก่อนก่อสร้าง
+          </li>
+          <li>
+            <strong>เก็บข้อมูลหลังเปิด 14 วัน</strong> ปริมาณ คิว ความเร็ว จุดตัดคนเดิน เทียบกับฐาน 20 พ.ค. 2569
+          </li>
+        </ol>
+      </section>
+
+      <section className="mt-6 rounded-[18px] bg-surface p-5 shadow-card sm:p-6">
+        <h2 className="text-lg font-semibold">ข้อจำกัดของข้อมูล</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
+          <li>สำรวจวันเดียว (พุธ 20 พ.ค. 2569 อากาศปกติ) ไม่ใช่ค่าเฉลี่ย 3 วัน</li>
+          <li>ไม่มีเวลาสัญญาณไฟในไฟล์ — ความจุสถานะปัจจุบันเป็นการวิเคราะห์ความไหว</li>
+          <li>คิวเป็นคิวขารวม ไม่แยกคิวเลี้ยวซ้าย จึงประเมิน spillback ของช่องซ้ายโดยอ้อม</li>
+          <li>บางชั่วโมงคิวมีตัวอย่าง 1 จุด (EB 08–09 น. = 200 ม.) ใช้ด้วยความระวัง</li>
+          <li>
+            รายงานฉบับก่อนวิเคราะห์คนละทิศ (NB เลี้ยวซ้าย) และมี PCU ผิดปกติ 18,211 — ไม่นำมาใช้ตอบบันทึกนี้
+          </li>
+        </ul>
+      </section>
+
+      <figure className="mt-6 rounded-[18px] bg-surface p-3 shadow-card sm:p-4">
+        <img
+          src="/docs/memo.jpg"
+          alt="บันทึกข้อความเขตหลักสี่ ขอความอนุเคราะห์คำนวณปริมาณรถยนต์"
+          className="h-auto w-full rounded-[12px] outline outline-1 -outline-offset-1 outline-black/10"
+        />
+        <figcaption className="mt-3 px-1 text-xs text-muted">
+          ต้นเรื่อง: {survey.memo.from} เรียน {survey.memo.to} ลงวันที่ {survey.memo.date}
+        </figcaption>
+      </figure>
+    </Shell>
+  );
+}

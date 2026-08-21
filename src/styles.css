@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --font-sans: "Sarabun", "IBM Plex Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --color-bg: #f3efe6;
+  --color-fg: #1c1915;
+  --color-muted: #6b6459;
+  --color-subtle: #8a8276;
+  --color-surface: #fbfaf6;
+  --color-surface-2: #ece7db;
+  --color-border: #d9d1c2;
+  --color-border-strong: #c4bba8;
+  --color-primary: #1f3348;
+  --color-primary-fg: #f7f4ee;
+  --color-accent: #3d5c76;
+  --color-ok: #2f5d43;
+  --color-ok-bg: #e4efe7;
+  --color-warn: #8a5a10;
+  --color-warn-bg: #f5ead3;
+  --color-bad: #9b2c2c;
+  --color-bad-bg: #f6e4e1;
+  --color-lamp-red: #c4453c;
+  --color-lamp-amber: #e0a020;
+  --color-lamp-green: #2f9d68;
+  --color-lamp-off: #1c1f24;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+
+  --shadow-card:
+    0 0 0 1px rgba(28, 25, 21, 0.06),
+    0 1px 2px -1px rgba(28, 25, 21, 0.06),
+    0 2px 8px 0 rgba(28, 25, 21, 0.04);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@media print {
+  nav,
+  .no-print,
+  header,
+  footer.no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  .doc-paper {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+  .doc-cover {
+    break-after: page;
+  }
+  .doc-break {
+    break-inside: avoid;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -6,6 +6,7 @@ import { IntersectionSchematic } from "@/components/intersection-schematic";
 export const Route = createFileRoute("/geometry")({ component: Geometry });
 
 const DIMS = [
+  { k: "153.00", v: "พื้นที่ผายปาก (ขยายเขตทาง) ตารางเมตร" },
   { k: "26.15 ม.", v: "ความยาวแนวปาดตามถนนแจ้งวัฒนะ" },
   { k: "11.25 ม.", v: "ระยะปาดด้านเข้ามุม (แนวทแยงแรก)" },
   { k: "5.14 ม.", v: "ทางเท้าคงเหลือช่วงกลางมุม" },
@@ -31,12 +32,13 @@ function Geometry() {
       <div className="mt-8 grid gap-6 lg:grid-cols-5">
         <figure className="rounded-[18px] bg-surface p-3 shadow-card sm:p-4 lg:col-span-3">
           <img
-            src="/docs/site-plan.jpg"
-            alt="แบบรายละเอียดการขอใช้พื้นที่ผายปากบริเวณแยกหลักสี่"
-            className="h-auto w-full rounded-[12px] outline outline-1 -outline-offset-1 outline-black/10"
+            src="/docs/site-plan.png"
+            alt="รูปแบบบริเวณที่จะทำการผายปาก แยกหลักสี่ — พื้นที่ขยายเขตทาง 153 ตร.ม."
+            className="h-auto w-full rounded-[12px] bg-white outline outline-1 -outline-offset-1 outline-black/10"
           />
           <figcaption className="mt-3 px-1 text-xs text-muted">
-            เอกสารประกอบบันทึกเขตหลักสี่ — รูปแบบบริเวณที่จะทำการผายปาก แนวรอกไฟฟ้าสายสีชมพูและแนวสะพานข้ามแยกหลักสี่อยู่ในแบบ
+            รูปแบบบริเวณที่จะทำการผายปาก — พื้นที่ขยายเขตทางประมาณ 153.00 ตร.ม. ระยะร่น Protection Zone A
+            สายสีชมพู 3.00 ม. แนวสะพานข้ามแยกหลักสี่อยู่ระดับดินด้านถนนแจ้งวัฒนะ b = ตู้ควบคุมสัญญาณไฟเดิม
           </figcaption>
         </figure>
         <div className="space-y-4 lg:col-span-2">

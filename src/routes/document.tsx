@@ -254,6 +254,16 @@ function TeReport() {
               </tbody>
             </table>
           </div>
+          <figure className="overflow-hidden rounded-[12px] border border-border bg-white">
+            <img
+              src="/docs/site-plan.png"
+              alt="รูปแบบบริเวณที่จะทำการผายปาก แยกหลักสี่"
+              className="h-auto w-full"
+            />
+            <figcaption className="border-t border-border px-3 py-2 text-xs text-muted">
+              ภาพที่ 2 รูปแบบบริเวณที่จะทำการผายปาก — พื้นที่ขยายเขตทางประมาณ 153.00 ตร.ม. ระยะร่นสายสีชมพู 3.00 ม.
+            </figcaption>
+          </figure>
           <IntersectionSchematic />
           <h4 className="font-semibold">2.1 การควบคุมปัจจุบัน</h4>
           <p>

@@ -101,7 +101,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           <p>สำรวจ 20 พ.ค. 2569 · สัญญาณไฟ 500 · แยกหลักสี่พลาซ่า</p>
           <p className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <DownloadReport label="ดาวน์โหลดรายงาน Word" variant="link" size="sm" />
-            <span>ข้อมูลประกอบการตอบบันทึก เขตหลักสี่ กท ๗๘๑๑/๓๙๗๗</span>
+            <span>© Prapawadee_W. · สจส. · ไม่อนุญาตให้นำไปใช้เพื่อผลประโยชน์ส่วนบุคคล</span>
           </p>
         </div>
       </footer>
